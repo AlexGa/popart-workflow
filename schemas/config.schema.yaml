@@ -1,0 +1,52 @@
+$schema: "http://json-schema.org/draft-06/schema#"
+
+description: snakemake configuration file
+
+type: object
+
+properties:
+  samples:
+    type: string
+  units:
+    type: string
+
+  ref:
+    type: object
+    properties:
+      species:
+        type: array
+      release:
+        type: array
+      build:
+        type: array
+    required:
+      - species
+      - release
+      - build
+
+  trimming:
+    type: object
+    properties:
+      activate:
+        type: boolean
+    required:
+      - activate
+
+  params:
+    type: object
+    properties:
+      cutadapt-pe-round1:
+        type: string
+      cutadapt-pe-round2:
+        type: string
+      star: 
+        type: string
+    required:
+      - cutadapt-pe-round1
+      - cutadapt-pe-round2
+      - star
+
+required:
+  - units
+  - params
+  - trimming

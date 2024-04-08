@@ -1,0 +1,31 @@
+{  
+  "__default__": {
+  "job-name": "{rule}",
+  "chdir": "/path/to/work/dir",
+  "output": "Log_Out/{rule}.o.%j",
+  "error": "Log_Err/{rule}.e.%j",
+  "cpus-per-task": "{threads}",
+  "partition": "cpu",
+  "mem": "10G",
+  "time": "01:30:00"
+  },
+  "cutadapt_pe": {
+    "time": "02:00:00",
+    "mem": "8G"
+  },
+  "star_pe_multi": {
+    "time": "08:00:00",
+    "mem": "120G"
+  },
+  "star_index_gtf": {
+    "time": "12:00:00",
+    "mem": "350G"
+  },
+  "samtools_view": {
+    "time": "01:00:00",
+    "mem": "20G"
+  },
+  "split_by_strand": {
+    "time": 01:00:00
+  }
+}

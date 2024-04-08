@@ -1,0 +1,51 @@
+# path or URL to sample sheet (TSV format, columns: sample, condition, ...)
+# samples: config/samples.tsv
+# path or URL to sequencing unit sheet (TSV format, columns: sample, unit, fq1, fq2)
+# Units are technical replicates (e.g. lanes, or resequencing of the same biological
+# sample).
+units: config/units.tsv
+
+ref:
+  # Ensembl species name
+  species: 
+    - homo_sapiens
+    - sars_cov2
+    - homo_sapiens_sars_cov2
+  # Ensembl release (make sure to take one where snpeff data is available, check 'snpEff databases' output)
+  release: 
+    homo_sapiens: "106"
+    sars_cov2: "MN908947.3"
+  # Genome build
+  build: 
+    homo_sapiens: "GRCh38"
+    sars_cov2: "NC_045512.2"
+  fasta:
+    homo_sapiens: "references/fasta/Homo_sapiens.GRCh38.dna_sm.toplevel.fa"
+    sars_cov2: "references/fasta/Sars_cov_2.ASM985889v3.dna.toplevel.fa"
+    homo_sapiens_sars_cov2: "references/fasta/GRCh38_SarsCov2.dna.toplevel.fa"
+  gtf:
+    homo_sapiens: "references/gtf/Homo_sapiens.GRCh38.106.gtf"
+    sars_cov2: "references/gtf/Sars_cov_2.ASM985889v3.101.gtf"
+    homo_sapiens_sars_cov2: "references/gtf/GRCh38_SarsCov2.gtf"
+  chromosomes:
+    sars_cov2: "MN908947.3"
+    
+align-order-input:
+  homo_sapiens: "results/star/silva"
+  sars_cov2: "results/star/homo_sapiens"
+  homo_sapiens_sars_cov2: "results/trimmed/round2"
+
+trimming:
+  activate: False
+
+params:
+  cutadapt-pe: "--match-read-wildcards --times 1 -e 0.1 -O 1 --quality-cutoff 6 -m 18 -a NNNNNAGATCGGAAGAGCACACGTCTGAACTCCAGTCAC -g CTTCCGATCTACAAGTT -g CTTCCGATCTTGGTCCT -A AACTTGTAGATCGGA -A AGGACCAAGATCGGA -A ACTTGTAGATCGGAA -A GGACCAAGATCGGAA -A CTTGTAGATCGGAAG -A GACCAAGATCGGAAG -A TTGTAGATCGGAAGA -A ACCAAGATCGGAAGA -A TGTAGATCGGAAGAG -A CCAAGATCGGAAGAG -A GTAGATCGGAAGAGC -A CAAGATCGGAAGAGC -A TAGATCGGAAGAGCG -A AAGATCGGAAGAGCG -A AGATCGGAAGAGCGT -A GATCGGAAGAGCGTC -A ATCGGAAGAGCGTCG -A TCGGAAGAGCGTCGT -A CGGAAGAGCGTCGTG -A GGAAGAGCGTCGTGT"
+  star-index-homo_sapiens_sars_cov2: "--genomeSAindexNbases 12 --sjdbGTFfeatureExon exon --sjdbGTFtagExonParentGene gene_id --sjdbGTFtagExonParentTranscript transcript_id --sjdbOverhang 29 --limitIObufferSize 30000000 50000000"
+  star-map-homo_sapiens_sars_cov2: "--runMode alignReads --outFilterScoreMinOverLread 0 --outFilterMatchNminOverLread 0 --outFilterMatchNmin 0 --outSAMtype BAM SortedByCoordinate --outFilterMultimapNmax 1 --outFilterMultimapScoreRange 1 --outSAMattributes All --outFilterType Normal --sjdbGTFfeatureExon exon --sjdbGTFtagExonParentGene gene_id --sjdbGTFtagExonParentTranscript transcript_id --alignSoftClipAtReferenceEnds No --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNoverLmax 0.04 --scoreDelOpen -1 --alignIntronMin 20 --alignIntronMax 3000 --alignMatesGapMax 3000 --alignEndsType EndToEnd --limitBAMsortRAM 110000000000 --outReadsUnmapped Fastx"  
+  star-index-homo_sapiens_sars_cov2-ram: 350000000000
+  star-map-homo_sapiens_sars_cov2-ram: 320000000000
+ 
+
+
+
+
