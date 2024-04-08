@@ -4,8 +4,6 @@ Nora Schmidt, Sebastian Zielinski, Alexander Gabel, Jens Aydin, and Mathias Muns
 
 **Identification of proteins directly bound to SARS-CoV-2 RNA in infected cells using RNA antisense purification and mass spectrometry**.
 
-# cRIP and eCLIP workflow
-
 ## General description from Schmidt et al. (2023)
 
 *To achieve a clean biochemical separation of SARS-CoV-2 genomic RNA (gRNA) and subgenomic mRNA (sgmRNA), we modified the RNA antisense purification strategy implemented in RAP-MS<sup>1,2,3</sup>.
